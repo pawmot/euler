@@ -1,5 +1,6 @@
 package com.pawmot.euler.utils.lazySeqs;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -94,5 +95,52 @@ public interface LazySeq<T> {
 
         if(n == 0) return c.head();
         else throw new IndexOutOfBoundsException();
+    }
+
+    /**
+     * This method counts the number of elements in this LazySeq.
+     * WARNING: The whole LazySeq will be realized.
+     * WARNING: This method will not terminate if called on an infinite LazySeq!
+     * WARNING: Given a LazySeq that is long enough the internal counter of this method will overflow!
+     *
+     * @return The length of this sequence
+     */
+    default public int length32() {
+        int l = 0;
+
+        for(LazySeq<T> c = this; !c.isEmpty(); c = c.tail(), l++);
+
+        return l;
+    }
+
+    /**
+     * This method counts the number of elements in this LazySeq.
+     * WARNING: The whole LazySeq will be realized.
+     * WARNING: This method will not terminate if called on an infinite LazySeq!
+     * WARNING: Given a LazySeq that is long enough the internal counter of this method will overflow!
+     *
+     * @return The length of this sequence
+     */
+    default public long length64() {
+        long l = 0;
+
+        for(LazySeq<T> c = this; !c.isEmpty(); c = c.tail(), l++);
+
+        return l;
+    }
+
+    /**
+     * This method counts the number of elements in this LazySeq.
+     * WARNING: The whole LazySeq will be realized.
+     * WARNING: This method will not terminate if called on an infinite LazySeq!
+     *
+     * @return The length of this sequence
+     */
+    default public BigInteger lengthBig() {
+        BigInteger l = BigInteger.ZERO;
+
+        for(LazySeq<T> c = this; !c.isEmpty(); c = c.tail(), l = l.add(BigInteger.ONE));
+
+        return l;
     }
 }

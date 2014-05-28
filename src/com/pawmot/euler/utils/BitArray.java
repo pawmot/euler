@@ -23,8 +23,8 @@ public final class BitArray {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        int n = index/8;
-        int m = index%8;
+        int n = index >> 3;
+        int m = index - n;
 
         int c = 1 << m;
         return (data[n] & c) == c;
@@ -35,8 +35,8 @@ public final class BitArray {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        int n = index/8;
-        int m = index%8;
+        int n = index >> 3;
+        int m = index - n;
 
         if(value) {
             data[n] |= 1 << m;
