@@ -1,4 +1,4 @@
-package com.pawmot.euler.utils.memo;
+package com.pawmot.euler.utils.memoization;
 
 import java.util.HashMap;
 import java.util.Map;
