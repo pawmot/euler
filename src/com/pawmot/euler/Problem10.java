@@ -17,7 +17,7 @@ public class Problem10 implements ProblemSolution {
         System.out.println(String.format("(it took %1$f ms)", (t2 - t1) / 1e6));
     }
 
-    // 27-32ms
+    // 25-30ms
     private long bitArraySieveSummation(int n) {
         BitArray sieve = new BitArray(n+1, true);
 
@@ -37,18 +37,18 @@ public class Problem10 implements ProblemSolution {
     // 18-22ms
     private long inlineBitArraySieveSummation(int n) {
         int n1 = n+1;
-        int[] data = new int[n1 % 8 == 0 ? n1/8 : n1/8 + 1];
+        int[] data = new int[n1 % 32 == 0 ? n1/32 : n1/32 + 1];
 
         long sum = 0;
         for(int i = 2; i <= n1; i++) {
-            int k = i >> 3;
+            int k = i >> 5;
             int m = i-k;
 
             int c = 1 << m;
             if((data[k] & c) != c) {
                 sum += i;
                 for(int j = 2*i; j <= n1; j+=i) {
-                    int k1 = j >> 3;
+                    int k1 = j >> 5;
                     int m1 = j-k1;
                     data[k1] |= 1 << m1;
                 }

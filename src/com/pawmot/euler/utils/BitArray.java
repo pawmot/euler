@@ -7,7 +7,7 @@ public final class BitArray {
     private int size;
 
     public BitArray(int size) {
-        int n = size % 8 == 0 ? size/8 : size/8 + 1;
+        int n = size % 32 == 0 ? size/32 : size/32 + 1;
         this.data = new int[n];
         this.size = size;
     }
@@ -23,7 +23,7 @@ public final class BitArray {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        int n = index >> 3;
+        int n = index >> 5;
         int m = index - n;
 
         int c = 1 << m;
@@ -35,7 +35,7 @@ public final class BitArray {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        int n = index >> 3;
+        int n = index >> 5;
         int m = index - n;
 
         if(value) {
