@@ -55,6 +55,7 @@ public class Main {
 
         problems.put(1, new Problem1());
         problems.put(2, new Problem2());
+        problems.put(3, new Problem3());
         problems.put(8, new Problem8());
         problems.put(9, new Problem9());
         problems.put(10, new Problem10());

@@ -1,4 +1,4 @@
-package com.pawmot.euler.utils.streams;
+package com.pawmot.euler.utils.lazySeqs;
 
 import java.util.function.Predicate;
 
@@ -6,7 +6,7 @@ class FilteredLazySeq<T> implements LazySeq<T> {
     private LazySeq<T> filtered;
     private final Predicate<T> filter;
 
-    public FilteredLazySeq(LazySeq<T> filtered, Predicate<T> filter) {
+    private FilteredLazySeq(LazySeq<T> filtered, Predicate<T> filter) {
         this.filtered = filtered;
         this.filter = filter;
     }

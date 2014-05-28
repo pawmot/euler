@@ -1,5 +1,7 @@
-package com.pawmot.euler.utils.streams;
+package com.pawmot.euler.utils.lazySeqs;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -48,5 +50,22 @@ public interface LazySeq<T> {
         if(n < 0) throw new IllegalArgumentException();
         if(n == 0) return new Empty<>();
         else return new BoundedLazySeq<>(this, n);
+    }
+
+    default public T firstOrNull(Predicate<T> f) {
+        LazySeq<T> c = this;
+
+        while(!c.isEmpty()) {
+            if(f.test(c.head())) return c.head();
+            c = c.tail();
+        }
+
+        return null;
+    }
+
+    default public LazySeq<T> distinct() {
+        Set<T> set = new HashSet<>();
+
+        return DistinctLazySeq.create(this, set);
     }
 }

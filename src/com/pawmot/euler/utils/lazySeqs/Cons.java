@@ -1,4 +1,4 @@
-package com.pawmot.euler.utils.streams;
+package com.pawmot.euler.utils.lazySeqs;
 
 import java.util.function.Supplier;
 

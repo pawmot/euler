@@ -1,4 +1,4 @@
-package com.pawmot.euler.utils.streams;
+package com.pawmot.euler.utils.lazySeqs;
 
 class BoundedLazySeq<T> implements LazySeq<T> {
     private final LazySeq<T> bounded;
