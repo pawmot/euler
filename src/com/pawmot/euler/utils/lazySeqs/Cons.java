@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 public class Cons<T> implements LazySeq<T> {
     private final T head;
 
-    private final Supplier<LazySeq<T>> tail;
+    private final Supplier<LazySeq<T>> tailProvider;
 
-    public Cons(T head, Supplier<LazySeq<T>> tail) {
+    public Cons(T head, Supplier<LazySeq<T>> tailProvider) {
         this.head = head;
-        this.tail = tail;
+        this.tailProvider = tailProvider;
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Cons<T> implements LazySeq<T> {
 
     @Override
     public LazySeq<T> tail() {
-        return this.tail.get();
+        return this.tailProvider.get();
     }
 
     @Override
